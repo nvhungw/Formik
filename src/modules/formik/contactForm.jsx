@@ -1,8 +1,8 @@
 import React from 'react'
 import { Formik } from 'formik';
-import validateRegisterForm from './validateRegisterForm';
+import validateContactForm from './validateRegisterForm';
 
-const FormHandling = () => {
+const ContactForm = () => {
 
     const handleFormSubmit = (values) => {
         console.log(values)
@@ -11,15 +11,15 @@ const FormHandling = () => {
     return (
         <Formik
             initialValues={{
-                username: '',
+                name: '',
                 email: '',
                 phone: '',
                 message: ''
 
             }}
-            // validateOnBlur={false}
+            validateOnBlur={false}
             onSubmit={handleFormSubmit}
-            validationSchema={validateRegisterForm}
+            validationSchema={validateContactForm}
         >
             {({ handleChange, handleSubmit, errors, values, handleBlur }) => (
                 <>
@@ -56,4 +56,4 @@ const FormHandling = () => {
     )
 }
 
-export default FormHandling
+export default ContactForm

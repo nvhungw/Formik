@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import FormHandling from './modules/formik/contactForm';
+import ContactForm from './modules/formik/contactForm';
+import Library from './modules/formik/library';
+import MailForm from './modules/formik/mailForm';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App /> */}
-    <FormHandling/>
+    {/* <ContactForm/> */}
+    {/* <Library/> */}
+    <MailForm/>
   </React.StrictMode>
 );
 
