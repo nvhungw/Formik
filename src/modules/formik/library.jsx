@@ -1,5 +1,6 @@
 import { Formik } from 'formik';
 import React from 'react'
+import validateLibrary from './validateLibrary';
 
 const Library = () => { 
   
@@ -7,6 +8,7 @@ const Library = () => {
   const [books, setBooks] = React.useState([])
   
   const [updatingIndex, setUpdatingIndex] = React.useState(-1);
+
 
   const handleFormSubmit = (formValues, formik) => {
     const currentStudents = [...books]
@@ -29,11 +31,16 @@ const Library = () => {
 
   const handleUpdate = (values) => { 
     console.log(values)
-    // const updatedBooks = [...books]
-    // updatedBooks[updatingIndex] = form
-    // setBooks(updatedBooks) //reset state
-    // resetForm() //reset form
-    // setUpdatingIndex(-1)
+    const updatedBooks = [...books]
+    updatedBooks[updatingIndex] = values
+    setBooks(updatedBooks)
+    setUpdatingIndex()
+  }
+
+  const handleDelete = (values) => {
+    const deletedBooks = [...books]
+    deletedBooks.splice(values, 1)
+    setBooks(deletedBooks)
   }
 
   return (
@@ -46,17 +53,20 @@ const Library = () => {
         }}
 
         onSubmit={handleFormSubmit}
+        validationSchema={validateLibrary}
       >
-        {({ handleChange, values, handleSubmit, setFieldValue }) => (
+        {({ handleChange, values, handleSubmit, setFieldValue, errors }) => (
           <>
             <div>
               <div>
                 <label>Title: </label>
                 <input type='text' name="title" onChange={handleChange} value={values.title} />
+                {errors.title && <p>{errors.title}</p>}
               </div>
               <div>
                 <label>Quantity: </label>
-                <input type="number" name="quantity" onChange={handleChange} value={values.quantity}  />
+                <input type="number" name="quantity" onChange={handleChange} value={values.quantity} />
+                {errors.quantity && <p>{errors.quantity}</p>}
               </div>
               {updatingIndex >= 0 ?  <button onClick={() => handleUpdate(values)}>Update</button> :  <button type="button" onClick={handleSubmit}>Submit</button>}
             </div>
@@ -65,6 +75,7 @@ const Library = () => {
                 <tr>
                   <td>Title</td>
                   <td>Quantity</td>
+                  <td>Actions</td>
                 </tr>
               </thead>
               <tbody>
@@ -74,7 +85,7 @@ const Library = () => {
                     <td>{book?.quantity}</td>
                     <td>
                       <button onClick={() => handleEdit(book, {setFieldValue})}>Edit</button>
-                      <button onClick={() => console.log('delete')}>Delete</button>
+                      <button onClick={() => handleDelete(book)}>Delete</button>
                     </td>
                   </tr>
                 ))}
