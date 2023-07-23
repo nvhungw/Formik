@@ -24,20 +24,20 @@ const MailForm = () => {
                 <>
                     <h1>Mail Form</h1>
                     <div>
-                        <label htmlFor="">To</label>
-                        <input type="text" name="to" onChange={handleChange} onBlur={handleBlur} value={values.to} />
+                        <label htmlFor="to">To</label>
+                        <input type="text" id="to" name="to" onChange={handleChange} onBlur={handleBlur} value={values.to} />
                         {errors.to && <p>{errors.to}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="">Title</label>
-                        <input type="text" name="title" onChange={handleChange} onBlur={handleBlur} value={values.title} />
+                        <label htmlFor="title">Title</label>
+                        <input type="text" id='title' name="title" onChange={handleChange} onBlur={handleBlur} value={values.title} />
                         {errors.title && <p>{errors.title}</p>}
                     </div>
 
                     <div>
-                        <label htmlFor="">Message</label>
-                        <input type="text" name="message" onChange={handleChange} value={values.message} />
+                        <label htmlFor="message">Message</label>
+                        <input type="text" id='message' name="message" onChange={handleChange} value={values.message} />
                         {errors.message && <p>{errors.message}</p>}
                     </div>
 

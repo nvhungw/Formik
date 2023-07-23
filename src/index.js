@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import ContactForm from './modules/formik/contactForm';
 import Library from './modules/formik/library';
 import MailForm from './modules/formik/mailForm';
+import MedicalForm from './modules/formik/medicalForm';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,8 +14,9 @@ root.render(
   <React.StrictMode>
     {/* <App /> */}
     {/* <ContactForm/> */}
-    <Library/>
+    {/* <Library/> */}
     {/* <MailForm/> */}
+    <MedicalForm/>
   </React.StrictMode>
 );
 

@@ -30,17 +30,17 @@ const Library = () => {
   }
 
   const handleUpdate = (values) => { 
-    console.log(values)
     const updatedBooks = [...books]
     updatedBooks[updatingIndex] = values
     setBooks(updatedBooks)
     setUpdatingIndex()
   }
 
-  const handleDelete = (values) => {
+  const handleDelete = (index) => {
     const deletedBooks = [...books]
-    deletedBooks.splice(values, 1)
+    deletedBooks.splice(index, 1)
     setBooks(deletedBooks)
+    setUpdatingIndex(-1)
   }
 
   return (
@@ -79,13 +79,13 @@ const Library = () => {
                 </tr>
               </thead>
               <tbody>
-                {books.map(book => (
-                  <tr key={book?.title}>
+                {books.map((book, index) => (
+                  <tr key={index}>
                     <td>{book?.title}</td>
                     <td>{book?.quantity}</td>
                     <td>
                       <button onClick={() => handleEdit(book, {setFieldValue})}>Edit</button>
-                      <button onClick={() => handleDelete(book)}>Delete</button>
+                      <button onClick={() => handleDelete(index)}>Delete</button>
                     </td>
                   </tr>
                 ))}
